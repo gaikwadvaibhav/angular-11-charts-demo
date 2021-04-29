@@ -5,6 +5,9 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 import * as CanvasJS from '../assets/canvasjs.min';  // Canvasjs dependacy imported
+// import { Chart } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-root',
@@ -18,9 +21,10 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-   this.loadAmchart()
+    this.loadAmchart()
     //   ------------------- Canvasjs line char -----------------
     this.loadCanvasChart();
+    this.loadChartJs()
   }
 
   loadAmchart() {
@@ -97,5 +101,31 @@ export class AppComponent implements AfterViewInit {
     charts.render();
   }
 
+  loadChartJs() {
+    var ctx: any = document.getElementById('myChart');
+    var myChart: any = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['21-04-2021', '21-04-2021', '21-04-2021', '22-04-2021', '23-04-2021', '24-04-2021'],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [65, 59, 80, 81, 56, 55],
+          pointStyle: 'triangle',
+          pointBackgroundColor: 'rgba(255, 0, 0)',
+          pointBorderColor: 'rgba(255, 0, 0)',
+          pointBorderWidth: 8,
+          fill: true,
+          borderColor: 'rgb(75, 192, 192)'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
 
 }
