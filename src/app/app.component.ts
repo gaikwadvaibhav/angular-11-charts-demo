@@ -73,18 +73,26 @@ export class AppComponent implements AfterViewInit {
      // Create chart instance
      var chart = am4core.create("chartdiv", am4charts.XYChart);
      // chart.marginRight = 40;
- 
+    //  chart.paddingRight = 20;
+    //  chart.dateFormatter.dateFormat = "yyyy-MM-dd";
+
+
      // Add data
      chart.data = this.chartdata;
      chart.responsive.enabled = true;
 
      // Create axes
      var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
- 
-    //  dateAxis.renderer.minGridDistance = 30;  // set grid width
+     dateAxis.dateFormatter = new am4core.DateFormatter();
 
-dateAxis.renderer.cellStartLocation = 0.2;
-dateAxis.renderer.cellEndLocation = 0.8;
+    //  dateAxis.dateFormatter.dateFormat = "d MMM, yyyy";
+    dateAxis.dateFormats.setKey("day", "M/dd/yyyy");
+    // dateAxis.dateFormatter.dateFormat = "M/dd/yyyy";
+
+     // set grid and location ***
+    //  dateAxis.renderer.minGridDistance = 90; // 50
+    //  dateAxis.renderer.grid.template.location = 1;  // 0.8 , 0.5 
+
 
      // Create value axis
      var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
@@ -124,7 +132,9 @@ dateAxis.renderer.cellEndLocation = 0.8;
      image.propertyFields.href = "bullet";
  
      bullet.tooltipText = "Value: [bold]{value}[/]";  // show tooltip
- 
+    //  latitudeLabel.label.paddingLeft = 40;
+    //  latitudeLabel.label.marginLeft = 40;
+
      // image.filters.push(new am4core.DropShadowFilter());   // set img shadow
  
      // set zoom 
