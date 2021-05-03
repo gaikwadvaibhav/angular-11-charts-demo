@@ -84,9 +84,9 @@ export class AppComponent implements AfterViewInit {
      // Create axes
      var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
      dateAxis.dateFormatter = new am4core.DateFormatter();
+     dateAxis.dateFormats.setKey("day", "M/dd/yyyy");
 
     //  dateAxis.dateFormatter.dateFormat = "d MMM, yyyy";
-    dateAxis.dateFormats.setKey("day", "M/dd/yyyy");
     // dateAxis.dateFormatter.dateFormat = "M/dd/yyyy";
 
      // set grid and location ***
